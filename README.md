@@ -15,6 +15,7 @@ Agent Type: We first preprocessed our data to get it ready for computation. We c
 
 ![alt text](weatherHMM.jpg)
 
+$$
 A \textbf{Hidden Markov Model (HMM)} is defined by:
 - \textbf{States} \( S = \{S_1, S_2, \dots, S_K\} \), where \( S_k \) represents a hidden state.
 - \textbf{Observations} \( O = \{O_1, O_2, \dots, O_T\} \), where \( O_t \) is a vector of multiple observed features at time step \( t \).
@@ -42,7 +43,7 @@ P(O_t \mid S_i) = \prod_{m=1}^{M} P(o_{tm} \mid S_i)
 Where:
 - \( P(o_{tm} \mid S_i) \) is the probability of observing the \( m \)-th feature \( o_{tm} \) (e.g., the temperature or wind speed) given hidden state \( S_i \).
 - \( M \) is the total number of attributes (in this case, \( M = 3 \)).
-
+$$
 
 Conclusion:
 
