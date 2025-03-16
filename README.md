@@ -17,33 +17,34 @@ Agent Type: We first preprocessed our data to get it ready for computation. We c
 
 
 As seen in our above diagram, this Hidden Markov Model (HMM) is defined by:
+(Equations and LaTex done with help from Chatgpt)
 - States $\( S = \{S_1, S_2, \dots, S_n\} \)$, where $\( S_n \)$ represents a hidden weather state.
-- Observations $\( O = \{O_1, O_2, \dots, O_T\} \)$, where $\( O_t \)$ is a vector of multiple observed features at time step $\( t \)$.
-  \[
+- Observations $\( O = \{O_1, O_2, \dots, O_T\} \)$, where $\( O_t \)$ is a vector of multiple observed features at time step $\( t \)$. Each observation is made up of 
+  $\[
   O_t = (\text{Precipitation}_t, \text{Temperature}_t, \text{Wind Speed}_t)
-  \]
-- \textbf{Transition probabilities} \( A = [A_{ij}] \), where \( A_{ij} \) is the probability of transitioning from state \( S_i \) to \( S_j \).
-  \[
+  \]$
+- Transition probabilities $\( A = [A_{ij}] \)$, where $\( A_{ij} \)$ is the probability of transitioning from state $\( S_i \) to \( S_j \)$.
+  $\[
   A_{ij} = P(S_t = S_j \mid S_{t-1} = S_i)
-  \]
-- \textbf{Emission probabilities} \( B = [B_{ik}] \), where \( B_{ik} \) is the probability of observing \( O_t \) given hidden state \( S_i \).
-  \[
+  \]$
+- Emission probabilities $\( B = [B_{ik}] \)$, where $\( B_{ik} \)$ is the probability of observing $\( O_t \)$ given hidden state $\( S_i \)$.
+  $\[
   B_{ik} = P(O_t = O_k \mid S_t = S_i)
-  \]
-  Where \( O_k \) is an observation vector \( O_t = (\text{Precipitation}_t, \text{Temperature}_t, \text{Wind Speed}_t) \).
+  \]$
+  Where $\( O_k \)$ is an observation vector $\( O_t = (\text{Precipitation}_t, \text{Temperature}_t, \text{Wind Speed}_t) \)$.
 
-\section*{Emission Probability Calculation for Multiple Attributes}
+Emission Probability Calculation for Multiple Attributes
 
-For each observation at time \( t \), which is a vector \( O_t = (o_{t1}, o_{t2}, \dots, o_{tM}) \), where \( o_{t1} \) represents precipitation, \( o_{t2} \) represents temperature, and \( o_{tM} \) represents wind speed, the \textbf{joint emission probability} given a hidden state \( S_i \) is computed as:
+For each observation at time $\( t \)$, which is a vector $\( O_t = (o_{t1}, o_{t2}, \dots, o_{tM}) \)$, where $\( o_{t1} \)$ represents precipitation, $\( o_{t2} \)$ represents temperature, and $\( o_{tM} \)$ represents wind speed, the $\textbf{joint emission probability}$ given a hidden state $\( S_i \)$ is computed as:
 
-\[
+$\[
 P(O_t \mid S_i) = \prod_{m=1}^{M} P(o_{tm} \mid S_i)
-\]
+\]$
 
 Where:
-- \( P(o_{tm} \mid S_i) \) is the probability of observing the \( m \)-th feature \( o_{tm} \) (e.g., the temperature or wind speed) given hidden state \( S_i \).
-- \( M \) is the total number of attributes (in this case, \( M = 3 \)).
-$$
+- $\( P(o_{tm} \mid S_i) \)$ is the probability of observing the $\( m \)$-th feature $\( o_{tm} \)$ (e.g., the temperature or wind speed) given hidden state $\( S_i \)$.
+- $\( M \)$ is the total number of attributes (in this case, $\( M = 3 \)$).
+
 
 Conclusion:
 
