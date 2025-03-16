@@ -33,9 +33,9 @@ As seen in our above diagram, this Hidden Markov Model (HMM) is defined by:
   \]$
   Where $\( O_k \)$ is an observation vector $\( O_t = (\text{Precipitation}_t, \text{Temperature}_t, \text{Wind Speed}_t) \)$.
 
-Emission Probability Calculation for Multiple Attributes
+Emission Probability Calculation for Multiple Attributes:
 
-For each observation at time $\( t \)$, which is a vector $\( O_t = (o_{t1}, o_{t2}, \dots, o_{tM}) \)$, where $\( o_{t1} \)$ represents precipitation, $\( o_{t2} \)$ represents temperature, and $\( o_{tM} \)$ represents wind speed, the $\textbf{joint emission probability}$ given a hidden state $\( S_i \)$ is computed as:
+For each observation at time $\( t \)$, which is a vector $\( O_t = (o_{t1}, o_{t2}, o_{t3}) \)$, where $\( o_{t1} \)$ represents precipitation, $\( o_{t2} \)$ represents temperature, and $\( o_{t3} \)$ represents wind speed, the $\textbf{joint emission probability}$ given a hidden state $\( S_i \)$ is computed as:
 
 $\[
 P(O_t \mid S_i) = \prod_{m=1}^{M} P(o_{tm} \mid S_i)
@@ -43,6 +43,7 @@ P(O_t \mid S_i) = \prod_{m=1}^{M} P(o_{tm} \mid S_i)
 
 Where:
 - $\( P(o_{tm} \mid S_i) \)$ is the probability of observing the $\( m \)$-th feature $\( o_{tm} \)$ (e.g., the temperature or wind speed) given hidden state $\( S_i \)$.
+- This works because if you imagine each observation as a separate node (precipitation vs. wind), they are conditionally independent when conditioned on $\( S_n \)$ due to d-separation
 - $\( M \)$ is the total number of attributes (in this case, $\( M = 3 \)$).
 
 
