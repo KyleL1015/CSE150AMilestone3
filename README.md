@@ -15,10 +15,10 @@ Agent Type: We first preprocessed our data to get it ready for computation. We c
 
 ![alt text](weatherHMM.jpg)
 
-$$
-A \textbf{Hidden Markov Model (HMM)} is defined by:
-- \textbf{States} \( S = \{S_1, S_2, \dots, S_K\} \), where \( S_k \) represents a hidden state.
-- \textbf{Observations} \( O = \{O_1, O_2, \dots, O_T\} \), where \( O_t \) is a vector of multiple observed features at time step \( t \).
+
+As seen in our above diagram, this Hidden Markov Model (HMM) is defined by:
+- States $\( S = \{S_1, S_2, \dots, S_n\} \)$, where $\( S_n \)$ represents a hidden weather state.
+- Observations $\( O = \{O_1, O_2, \dots, O_T\} \)$, where $\( O_t \)$ is a vector of multiple observed features at time step $\( t \)$.
   \[
   O_t = (\text{Precipitation}_t, \text{Temperature}_t, \text{Wind Speed}_t)
   \]
