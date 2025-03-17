@@ -18,7 +18,7 @@ Agent Type: We first preprocessed our data to get it ready for computation. We c
 
 
 As seen in our above diagram, this Hidden Markov Model (HMM) is defined by:
-(Prompted ChatGPT to format the equations into latex)
+(Prompted ChatGPT for information about the equations related to Guassian Hidden Markov Model and how to format them in markdown/latex https://chatgpt.com/share/67d78ef5-f1bc-8000-bbf5-0a0bdbe9c4ab)
 - States $\( S = \{S_1, S_2, \dots, S_n\} \)$, where $\( S_n \)$ represents a hidden weather state.
 - Observations $\( O = \{O_1, O_2, \dots, O_T\} \)$, where $\( O_t \)$ is a vector of multiple observed features at time step $\( t \)$. Each observation is made up of 
   $\[
