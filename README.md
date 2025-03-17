@@ -1,6 +1,6 @@
 # CSE150AMilestone3
 
-Model: Milestone3.ipynb
+Model: [Milestone3.ipynb](Milestone3.ipynb)
 
 Sources: 
 https://hmmlearn.readthedocs.io/en/latest/tutorial.html
