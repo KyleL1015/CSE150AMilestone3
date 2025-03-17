@@ -18,7 +18,7 @@ Agent Type: We first preprocessed our data to get it ready for computation. We c
 
 
 As seen in our above diagram, this Hidden Markov Model (HMM) is defined by:
-(Equations and LaTex done with help from Chatgpt)
+(Prompted ChatGPT for information about the equations related to Guassian Hidden Markov Model and how to format them in markdown/latex https://chatgpt.com/share/67d78ef5-f1bc-8000-bbf5-0a0bdbe9c4ab)
 - States $\( S = \{S_1, S_2, \dots, S_n\} \)$, where $\( S_n \)$ represents a hidden weather state.
 - Observations $\( O = \{O_1, O_2, \dots, O_T\} \)$, where $\( O_t \)$ is a vector of multiple observed features at time step $\( t \)$. Each observation is made up of 
   $\[
@@ -34,9 +34,7 @@ As seen in our above diagram, this Hidden Markov Model (HMM) is defined by:
   \]$
   Where $\( O_k \)$ is an observation vector $\( O_t = (\text{Precipitation}_t, \text{MaxTemperature}_t, \text{MinTemperature}_t, \text{Wind Speed}_t) \)$.
 
-Emission Probability Calculation for Gaussian HMM:
-
-For each observation at time $\( t \)$, which is a vector $\( O_t = (o_{t1}, o_{t2}, o_{t3}, o_{t4}) \)$, where $\( o_{t1} \)$ represents precipitation, $\( o_{t2} \)$ represents maximum temperature, $\( o_{t3} \)$ represents minimum temperature, and $\(o_{t4} \)$ represents the wind speed, the joint emission probability given a hidden state $\( S_i \)$ is computed as:
+For a Guassian HMM, the emission probability is calculated using a Normal distribution for each hidden state. For simplicity we use hmmlearn a Python library to implement the Gaussian HMM. For each observation at time $\( t \)$, which is a vector $\( O_t = (o_{t1}, o_{t2}, o_{t3}, o_{t4}) \)$, where $\( o_{t1} \)$ represents precipitation, $\( o_{t2} \)$ represents maximum temperature, $\( o_{t3} \)$ represents minimum temperature, and $\(o_{t4} \)$ represents the wind speed. Here the emission probability is calculated by the probability density function of the multivariate Gaussian/Normal distrubition:
 
 $\[
 P(o_t \mid s_t = i) = \frac{1}{\sqrt{(2\pi)^d |\Sigma_i|}} \exp\left(-\frac{1}{2}(o_t - \mu_i)^\top \Sigma_i^{-1}(o_t - \mu_i)\right)
@@ -44,9 +42,11 @@ P(o_t \mid s_t = i) = \frac{1}{\sqrt{(2\pi)^d |\Sigma_i|}} \exp\left(-\frac{1}{2
 
 Where:
 - $\( P(o_{tm} \mid S_i) \)$ is the probability of observing the $\( m \)$-th feature $\( o_{tm} \)$ (e.g., the temperature or wind speed) given hidden state $\( S_i \)$.
-- This works because if you imagine each observation as a separate node (precipitation vs. wind), they are conditionally independent when conditioned on $\( S_n \)$ due to the fork condition of d-separation.
-- $\( M \)$ is the total number of attributes (in this case, $\( M = 4 \)$).
+- $mu_i$ represents the normal distrubution's mean for state $s_t=i$
+- $|\Sigma_i|$, normal distrubution's covariance matrix for state $s_t=i$
+- Another importance to note is how each observation as a separate node (precipitation vs. wind) i.i.d, where they are conditionally independent when conditioned on $\( S_n \)$ due to the fork condition of d-separation. This can especially be seen in the photo above.
 
 
 Conclusion:
+Our Gaussian Hidden Markov Model (HMM) predicts weather states based on observed data where it acheived an accuracy of 82.94% on the test set. This shows that the model is able to capture underlying weather patterns and generalizing well to unseen data. We initially attempted to catergoize the continuous data into discrete bins to utilize the multinomial HMM from hmlearn, however these modifications of the data led to the model not performing well. Due to the accuracy our model achieved, the agent's performance did well, but of course there can be room for improvement. Future work to improve our model could be further training on a much more extensive dataset or perhaps modifying some of the parameters of the Gaussian HMM that the hmlearn library provides.
 
