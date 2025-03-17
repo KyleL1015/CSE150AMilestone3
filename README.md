@@ -1,11 +1,12 @@
 # CSE150AMilestone3
 
-Model: Milestone3.ipynb
+Model: [Milestone3.ipynb](https://github.com/KyleL1015/CSE150AMilestone3/blob/main/Milestone3.ipynb)
 
 Sources: 
-https://hmmlearn.readthedocs.io/en/latest/tutorial.html
-chatgpt.com
-https://www.kaggle.com/datasets/ananthr1/weather-prediction
+https://hmmlearn.readthedocs.io/en/latest/tutorial.html        [Gaussian Hidden Markov Model]
+https://www.kaggle.com/datasets/ananthr1/weather-prediction    [Seattle Weather Dataset]
+
+chatgpt.com                  
 
 Overview: This project finds the most likely weather state given observed data such as minimum temperature, maximum temperature, wind speed, and precipitation using a Gaussian Hidden Markov Model. This HMM is referred to as 'Gaussian' because it assumes the observations follow a Normal/Gaussian distribution. We use a Gaussian Hidden Markov Model because our weather features are continuous numerical values rather than discrete values.
 
