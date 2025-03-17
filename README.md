@@ -7,7 +7,7 @@ https://hmmlearn.readthedocs.io/en/latest/tutorial.html
 chatgpt.com
 https://www.kaggle.com/datasets/ananthr1/weather-prediction
 
-Overview: This project finds the most likely weather state given certain evidence such as minimum temperature, maximum temperature, wind speed, and precipitation using a Multinomial Hidden Markov Model. The "Multinomial" part of the the Multinomial HMM is because we are using this on discrete data values. By separating all of our evidence into bins such as "0-5 mm of precipitation = light rain" we can turn all of our continuous data into discrete values. 
+Overview: This project finds the most likely weather state given certain evidence such as minimum temperature, maximum temperature, wind speed, and precipitation using a Gaussian Hidden Markov Model. The "Gaussian" part of the the Gaussian HMM is because we are using this on continous data values. Instead of a fixed value from an emission matrix by fitting our evidence into a Gaussian/Normal distribution and it will come up with the approximated probability to get a value based on the data.
 
 PEAS: In terms of PEAS, the the reak world and its weather patterns. Specifically since the data is from Seattle it would include all the attributes in Seattle that the weather could contribute to. The performance measure of our model is is how accurately it predicts the weather (of past, present, and future states) given the observations mentioned before like temperature or precipitation. This model's actuators are the most likely output of weather conditions and the possible future states based on calculated probabilities. The sensors are simply the historical data that's being inputted into our model turned into discrete categories. 
 
@@ -33,12 +33,12 @@ As seen in our above diagram, this Hidden Markov Model (HMM) is defined by:
   \]$
   Where $\( O_k \)$ is an observation vector $\( O_t = (\text{Precipitation}_t, \text{MaxTemperature}_t, \text{MinTemperature}_t, \text{Wind Speed}_t) \)$.
 
-Emission Probability Calculation for Multiple Attributes:
+Emission Probability Calculation for Gaussian HMM:
 
 For each observation at time $\( t \)$, which is a vector $\( O_t = (o_{t1}, o_{t2}, o_{t3}, o_{t4}) \)$, where $\( o_{t1} \)$ represents precipitation, $\( o_{t2} \)$ represents maximum temperature, $\( o_{t3} \)$ represents minimum temperature, and $\(o_{t4} \)$ represents the wind speed, the joint emission probability given a hidden state $\( S_i \)$ is computed as:
 
 $\[
-P(O_t \mid S_i) = \prod_{m=1}^{M} P(o_{tm} \mid S_i)
+P(o_t \mid s_t = i) = \frac{1}{\sqrt{(2\pi)^d |\Sigma_i|}} \exp\left(-\frac{1}{2}(o_t - \mu_i)^\top \Sigma_i^{-1}(o_t - \mu_i)\right)
 \]$
 
 Where:
