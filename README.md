@@ -44,9 +44,9 @@ Where:
 - $\( P(o_{tm} \mid S_i) \)$ is the probability of observing the $\( m \)$-th feature $\( o_{tm} \)$ (e.g., the temperature or wind speed) given hidden state $\( S_i \)$.
 - $mu_i$ represents the normal distrubution's mean for state $s_t=i$
 - $|\Sigma_i|$, normal distrubution's covariance matrix for state $s_t=i$
-- This works because if you imagine each observation as a separate node (precipitation vs. wind), they are conditionally independent when conditioned on $\( S_n \)$ due to the fork condition of d-separation.
-
+- Another importance to note is how each observation as a separate node (precipitation vs. wind) i.i.d, where they are conditionally independent when conditioned on $\( S_n \)$ due to the fork condition of d-separation. This can especially be seen in the photo above.
 
 
 Conclusion:
+Our Gaussian Hidden Markov Model (HMM) predicts weather states based on observed data where it acheived an accuracy of 82.94% on the test set. This shows that the model is able to capture underlying weather patterns and generalizing well to unseen data. We initially attempted to catergoize the continuous data into discrete bins to utilize the multinomial HMM from hmlearn, however these modifications of the data led to the model not performing well. Due to the accuracy our model achieved, the agent's performance did well, but of course there can be room for improvement. Future work to improve our model could be further training on a much more extensive dataset or perhaps modifying some of the parameters of the Gaussian HMM that the hmlearn library provides.
 
