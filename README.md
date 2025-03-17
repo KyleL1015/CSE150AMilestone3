@@ -34,9 +34,7 @@ As seen in our above diagram, this Hidden Markov Model (HMM) is defined by:
   \]$
   Where $\( O_k \)$ is an observation vector $\( O_t = (\text{Precipitation}_t, \text{MaxTemperature}_t, \text{MinTemperature}_t, \text{Wind Speed}_t) \)$.
 
-Emission Probability Calculation for Gaussian HMM:
-
-For each observation at time $\( t \)$, which is a vector $\( O_t = (o_{t1}, o_{t2}, o_{t3}, o_{t4}) \)$, where $\( o_{t1} \)$ represents precipitation, $\( o_{t2} \)$ represents maximum temperature, $\( o_{t3} \)$ represents minimum temperature, and $\(o_{t4} \)$ represents the wind speed, the joint emission probability given a hidden state $\( S_i \)$ is computed as:
+For a Guassian HMM, the emission probability is calculated using a Normal distribution for each hidden state. For simplicity we use hmmlearn a Python library to implement the Gaussian HMM. For each observation at time $\( t \)$, which is a vector $\( O_t = (o_{t1}, o_{t2}, o_{t3}, o_{t4}) \)$, where $\( o_{t1} \)$ represents precipitation, $\( o_{t2} \)$ represents maximum temperature, $\( o_{t3} \)$ represents minimum temperature, and $\(o_{t4} \)$ represents the wind speed. Here the emission probability is calculated by the probability density function of the multivariate Gaussian/Normal distrubition:
 
 $\[
 P(o_t \mid s_t = i) = \frac{1}{\sqrt{(2\pi)^d |\Sigma_i|}} \exp\left(-\frac{1}{2}(o_t - \mu_i)^\top \Sigma_i^{-1}(o_t - \mu_i)\right)
@@ -44,8 +42,10 @@ P(o_t \mid s_t = i) = \frac{1}{\sqrt{(2\pi)^d |\Sigma_i|}} \exp\left(-\frac{1}{2
 
 Where:
 - $\( P(o_{tm} \mid S_i) \)$ is the probability of observing the $\( m \)$-th feature $\( o_{tm} \)$ (e.g., the temperature or wind speed) given hidden state $\( S_i \)$.
+- $mu_i$ represents the normal distrubution's mean for state $s_t=i$
+- $|\Sigma_i|$, normal distrubution's covariance matrix for state $s_t=i$
 - This works because if you imagine each observation as a separate node (precipitation vs. wind), they are conditionally independent when conditioned on $\( S_n \)$ due to the fork condition of d-separation.
-- $\( M \)$ is the total number of attributes (in this case, $M = 4$).
+
 
 
 Conclusion:
