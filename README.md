@@ -46,7 +46,24 @@ Where:
 - $|\Sigma_i|$, normal distrubution's covariance matrix for state $s_t=i$
 - Another importance to note is how each observation as a separate node (precipitation vs. wind) i.i.d, where they are conditionally independent when conditioned on $\( S_n \)$ due to the fork condition of d-separation. This can especially be seen in the photo above.
 
+From Model Training Section:
+```python
+#Get a single feature vector for obs/labels
+X = df[['precipitation', 'temp_max', 'temp_min', 'wind']].values #observations
+Y = df['weather_cat'].values
+
+#Split training and test data
+X_train, X_test ,Y_train, Y_test = train_test_split(X, Y, test_size = 0.2, random_state = 42)
+
+#Define and train the Gaussian HMM
+n_states = 5
+model = GaussianHMM(n_components=n_states, covariance_type="diag", n_iter=1000, random_state=42)
+model.fit(X_train)
+
+#Predict hidden states for the test set
+predicted_states_train = model.predict(X_train)
+```
 
 Conclusion:
-Our Gaussian Hidden Markov Model (HMM) predicts weather states based on observed data where it acheived an accuracy of 82.94% on the test set. This shows that the model is able to capture underlying weather patterns and generalizing well to unseen data. We initially attempted to categorize the continuous data into discrete bins to utilize the multinomial HMM from hmlearn, however these modifications of the data led to the model not performing well. Due to the accuracy our model achieved, the agent's performance did moderately well, but of course there can be room for improvement. Future work to improve our model could be further training on a much more extensive dataset as it seems that there might not have been enoguh data to categorize well. It didn't help that the data was onlty from a specific area either as that means our findings might only be generalized to Seattle. Some other possible modifications include modifying some of the parameters of the Gaussian HMM that the hmlearn library provides, changing the time-frame (such as using hours) to capture more specific patterns, or inluding the date so we could see more variation related to the season. 
+We initially attempted to categorize the continuous data into discrete bins to utilize the multinomial HMM from hmlearn, however these modifications of the data led to the model not performing well which is why we switched to use a Gaussian model instead. Our Gaussian Hidden Markov Model (HMM) predicts weather states based on observed data where it acheived an accuracy of 82.94% on the test set. This shows that the model is able to capture underlying weather patterns and generalize relatively well to unseen data. Our confusion matrix showed us that although the most common states (Sun and Rain) were often classfied correctly (only 8 misclassifications total), however, the less common states were often overshadowed and were easily misclassified as one of the other two (42 misclassifications total). We believe this could've been because the amount of data resulted in biases towards states (like Sunny) or because states with similar conditions such as (Snow and Rain) are hard to tell apart with such a small amount of differentiating data. It's also possible that even though our dataset had labels for every day, they weren't specific enough and could've been differentiated into more states which means states that were more common would've been split up and wouldn't have overshadowed other states as easily. Due to the accuracy our model achieved, the agent's performance did moderately well, but of course there can be room for improvement. Future work to improve our model could be further training on a much more extensive dataset as it seems that there might not have been enoguh data to categorize well. It didn't help that the data was onlty from a specific area either as that means our findings might only be generalized to Seattle. Some other possible modifications include modifying some of the parameters of the Gaussian HMM that the hmlearn library provides, changing the time-frame (such as using hours) to capture more specific patterns, or inluding the date so we could see more variation related to the season. 
 
