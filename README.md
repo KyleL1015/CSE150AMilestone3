@@ -45,7 +45,7 @@ P(o_t \mid s_t = i) = \frac{1}{\sqrt{(2\pi)^d |\Sigma_i|}} \exp\left(-\frac{1}{2
 Where:
 - $\( P(o_{tm} \mid S_i) \)$ is the probability of observing the $\( m \)$-th feature $\( o_{tm} \)$ (e.g., the temperature or wind speed) given hidden state $\( S_i \)$.
 - This works because if you imagine each observation as a separate node (precipitation vs. wind), they are conditionally independent when conditioned on $\( S_n \)$ due to the fork condition of d-separation.
-- $\( M \)$ is the total number of attributes (in this case, $\( M = 4 \)$).
+- $\( M \)$ is the total number of attributes (in this case, $M = 4$).
 
 
 Conclusion:
